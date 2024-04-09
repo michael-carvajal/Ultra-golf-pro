@@ -25,25 +25,28 @@ const LoginPage = ({navigation}: any) => {
       {/* Use the imported images */}
       <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.background} >
       <Image source={ugpLogo} style={styles.logo} />
+      <View>
+
       <TouchableOpacity onPress={handleLoginForm} style={styles.button}>
         <Image source={whiteGolfBall} style={styles.buttonImage} />
         <Text style={styles.buttonText}>Returning</Text>
         <Text style={styles.buttonText}>Members</Text>
         <Text style={styles.buttonText}>Start</Text>
       </TouchableOpacity>
+      </View>
       {/* Sign Up buttons */}
-      <TouchableOpacity
-        onPress={handleSignUpForm}
-        style={[styles.button, styles.signUpButton]}>
-        <Text style={styles.buttonText}>Sign Up with Email</Text>
+      <TouchableOpacity style={[styles.button, styles.appleButton]}>
+        <Text style={styles.buttonText}>Sign Up with Apple</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={handleGoogleSignUp}
         style={[styles.button, styles.googleButton]}>
         <Text style={styles.buttonText}>Sign Up with Google</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.appleButton]}>
-        <Text style={styles.buttonText}>Sign Up with Apple</Text>
+      <TouchableOpacity
+        onPress={handleSignUpForm}
+        style={[styles.button, styles.signUpButton]}>
+        <Text style={styles.buttonText}>Sign Up with Email</Text>
       </TouchableOpacity>
       <Text style={styles.termsText}>Terms and Conditions</Text>
 </ImageBackground>
@@ -72,6 +75,8 @@ background: {
 },
   button: {
     alignItems: 'center',
+    marginHorizontal: '10%'
+
   },
   buttonImage: {
     width: 220,
@@ -82,15 +87,17 @@ background: {
     fontFamily: 'Arial',
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#00FF00',
+    color: 'white',
+    padding: 4,
+    paddingBottom:6,
     textAlign: 'center',
   },
   signUpButton: {
     backgroundColor: '#00FF00',
-    marginTop: 40,
+    marginTop: 20,
   },
   googleButton: {
-    backgroundColor: '#0000FF',
+    backgroundColor: 'lightblue',
     marginTop: 20,
   },
   appleButton: {
@@ -103,6 +110,7 @@ background: {
     color: '#FFFFFF',
     textDecorationLine: 'underline',
     marginTop: 20,
+    alignSelf:'center'
   },
 });
 
