@@ -26,7 +26,7 @@ const LoginPage = ({navigation}: any) => {
       <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.background} >
       <Image source={ugpLogo} style={styles.logo} />
       <View>
-
+      
       <TouchableOpacity onPress={handleLoginForm} style={styles.button}>
         <Image source={whiteGolfBall} style={styles.buttonImage} />
         <Text style={styles.buttonText}>Returning</Text>
