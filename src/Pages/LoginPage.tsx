@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native';
 
 const ugpLogo = require('../assets/images/ugp_logo.png');
+const backgroundImage = require('../assets/images/background.png');
 const whiteGolfBall = require('../assets/images/white_golf_ball.svg');
 
 const LoginPage = ({navigation}: any) => {
@@ -20,8 +21,9 @@ const LoginPage = ({navigation}: any) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       {/* Use the imported images */}
+      <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.background} >
       <Image source={ugpLogo} style={styles.logo} />
       <TouchableOpacity onPress={handleLoginForm} style={styles.button}>
         <Image source={whiteGolfBall} style={styles.buttonImage} />
@@ -44,6 +46,7 @@ const LoginPage = ({navigation}: any) => {
         <Text style={styles.buttonText}>Sign Up with Apple</Text>
       </TouchableOpacity>
       <Text style={styles.termsText}>Terms and Conditions</Text>
+</ImageBackground>
     </View>
   );
 };
@@ -56,9 +59,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   logo: {
-    width: 220,
-    height: 220,
+   objectFit: 'contain',
+   width:200,
+    height: 200,
+    // marginHorizontal:'auto'
+    marginLeft:'auto',
+    marginRight:'auto'
   },
+background: {
+  width: '100%',
+  height: '100%'
+},
   button: {
     alignItems: 'center',
   },
