@@ -5,9 +5,9 @@ const ugpLogo = require('../assets/images/ugp_logo.png');
 const backgroundImage = require('../assets/images/background.png');
 const whiteGolfBall = require('../assets/images/white_golf_ball.svg');
 
-const LoginPage = ({navigation}: any) => {
+const EmailLogin = ({navigation}: any) => {
   const handleLoginForm = () => {
-    navigation.navigate('EmailLogin');
+    navigation.navigate('LoginFormScreen');
   };
 
   const handleGoogleSignUp = async () => {
@@ -114,4 +114,4 @@ background: {
   },
 });
 
-export default LoginPage;
+export default EmailLogin;
