@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, TextInput, Button } from 'react-native';
 
 const backgroundImage = require('../assets/images/background.png');
 
 const EmailLogin = ({ navigation }: any) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleLogin = async () => {
     console.log('handle login')
+    console.log(email, password);
   }
 
   return (
@@ -19,10 +23,14 @@ const EmailLogin = ({ navigation }: any) => {
         <TextInput
           style={styles.input}
           placeholder='Enter Email'
+          value={email}
+          onChangeText={setEmail}
         />
         <TextInput
           style={styles.input}
           placeholder='Enter Password'
+          value={password}
+          onChangeText={setPassword}
         />
         <Button title="Submit" onPress={handleLogin}>
 
