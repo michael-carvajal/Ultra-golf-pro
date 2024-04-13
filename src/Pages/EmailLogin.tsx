@@ -31,7 +31,10 @@ const EmailLogin = ({ navigation }: any) => {
         }
       })
       const userData = await response.json();
-      console.log(userData);
+      await saveData('user', JSON.stringify(userData));
+      
+      const localUser =  await getData('user')
+      console.log('user datya from local stoarege =====>', localUser);
       
      
     } else {
