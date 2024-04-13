@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, TextInput, Button } from 'react-native';
+import { getData, saveData } from '../util/localStorageController';
 
 const backgroundImage = require('../assets/images/background.png');
 
@@ -19,6 +20,24 @@ const EmailLogin = ({ navigation }: any) => {
     const data = await response.json();
 
     console.log(data);
+
+    if (data.token) {
+      await saveData('token', data.token);
+
+      const token = await getData('token');
+      const response = await fetch('http://dev.ultragolfpro.com/account/me',{
+        headers: {
+          'Authorization' : token!
+        }
+      })
+      const userData = await response.json();
+      console.log(userData);
+      
+     
+    } else {
+      console.log('error there is no token');
+
+    }
 
 
   }
