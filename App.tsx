@@ -3,6 +3,7 @@ import LoginPage from './src/Pages/LoginPage.tsx';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import EmailLogin from './src/Pages/EmailLogin.tsx';
+import ProfilePage from './src/Pages/ProfilePage.tsx';
 function App(): React.ReactNode {
   const Stack = createNativeStackNavigator();
   return (
@@ -10,6 +11,7 @@ function App(): React.ReactNode {
 <Stack.Navigator>
   <Stack.Screen name='Login' component={LoginPage}></Stack.Screen>
   <Stack.Screen name='EmailLogin' component={EmailLogin}></Stack.Screen>
+  <Stack.Screen name='Profile' component={ProfilePage}></Stack.Screen>
 </Stack.Navigator>
     </NavigationContainer>
   )

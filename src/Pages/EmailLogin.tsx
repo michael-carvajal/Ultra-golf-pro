@@ -25,18 +25,18 @@ const EmailLogin = ({ navigation }: any) => {
       await saveData('token', data.token);
 
       const token = await getData('token');
-      const response = await fetch('http://dev.ultragolfpro.com/account/me',{
+      const response = await fetch('http://dev.ultragolfpro.com/account/me', {
         headers: {
-          'Authorization' : token!
+          'Authorization': token!
         }
       })
       const userData = await response.json();
       await saveData('user', JSON.stringify(userData));
-      
-      const localUser =  await getData('user')
+
+      const localUser = await getData('user')
       console.log('user datya from local stoarege =====>', localUser);
-      
-     
+      navigation.navigate('Profile')
+
     } else {
       console.log('error there is no token');
 
