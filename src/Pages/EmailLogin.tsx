@@ -10,6 +10,17 @@ const EmailLogin = ({ navigation }: any) => {
   const handleLogin = async () => {
     console.log('handle login')
     console.log(email, password);
+
+    const response = await fetch('http://dev.ultragolfpro.com/account/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
+    const data = await response.json();
+
+    console.log(data);
+
+
   }
 
   return (
