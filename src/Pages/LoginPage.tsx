@@ -1,11 +1,27 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 const ugpLogo = require('../assets/images/ugp_logo.png');
 const backgroundImage = require('../assets/images/background.png');
 const whiteGolfBall = require('../assets/images/white_golf_ball.svg');
 
-const LoginPage = ({navigation}: any) => {
+const LoginPage = ({ navigation }: any) => {
+  const signIn = async () => {
+    try {
+      const hasGPlay = await GoogleSignin.hasPlayServices();
+      console.log(hasGPlay);
+
+      const userInfo = await GoogleSignin.signIn();
+      console.log(userInfo);
+      // Handle the user information
+    } catch (error) {
+      console.log(error);
+
+      console.error(error);
+      // Handle error
+    }
+  };
   const handleLoginForm = () => {
     navigation.navigate('EmailLogin');
   };
@@ -24,32 +40,38 @@ const LoginPage = ({navigation}: any) => {
     <View style={styles.container} >
       {/* Use the imported images */}
       <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.background} >
-      <Image source={ugpLogo} style={styles.logo} />
-      <View>
-      
-      <TouchableOpacity onPress={handleLoginForm} style={styles.button}>
-        <Image source={whiteGolfBall} style={styles.buttonImage} />
-        <Text style={styles.buttonText}>Returning</Text>
-        <Text style={styles.buttonText}>Members</Text>
-        <Text style={styles.buttonText}>Start</Text>
-      </TouchableOpacity>
-      </View>
-      {/* Sign Up buttons */}
-      <TouchableOpacity style={[styles.button, styles.appleButton]}>
-        <Text style={styles.buttonText}>Sign Up with Apple</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={handleGoogleSignUp}
-        style={[styles.button, styles.googleButton]}>
-        <Text style={styles.buttonText}>Sign Up with Google</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={handleSignUpForm}
-        style={[styles.button, styles.signUpButton]}>
-        <Text style={styles.buttonText}>Sign Up with Email</Text>
-      </TouchableOpacity>
-      <Text style={styles.termsText}>Terms and Conditions</Text>
-</ImageBackground>
+        <Image source={ugpLogo} style={styles.logo} />
+        <View>
+
+          <TouchableOpacity onPress={handleLoginForm} style={styles.button}>
+            <Image source={whiteGolfBall} style={styles.buttonImage} />
+            <Text style={styles.buttonText}>Returning</Text>
+            <Text style={styles.buttonText}>Members</Text>
+            <Text style={styles.buttonText}>Start</Text>
+          </TouchableOpacity>
+        </View>
+        {/* Sign Up buttons */}
+        <TouchableOpacity style={[styles.button, styles.appleButton]}>
+          <Text style={styles.buttonText}>Sign Up with Apple</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={handleGoogleSignUp}
+          style={[styles.button, styles.googleButton]}>
+          <Text style={styles.buttonText}>Sign Up with Google</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={handleSignUpForm}
+          style={[styles.button, styles.signUpButton]}>
+          <Text style={styles.buttonText}>Sign Up with Email</Text>
+        </TouchableOpacity>
+        <GoogleSigninButton
+          style={styles.button}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={signIn}
+        />
+        <Text style={styles.termsText}>Terms and Conditions</Text>
+      </ImageBackground>
     </View>
   );
 };
@@ -62,17 +84,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   logo: {
-   objectFit: 'contain',
-   width:200,
+    objectFit: 'contain',
+    width: 200,
     height: 200,
     // marginHorizontal:'auto'
-    marginLeft:'auto',
-    marginRight:'auto'
+    marginLeft: 'auto',
+    marginRight: 'auto'
   },
-background: {
-  width: '100%',
-  height: '100%'
-},
+  background: {
+    width: '100%',
+    height: '100%'
+  },
   button: {
     alignItems: 'center',
     marginHorizontal: '10%'
@@ -89,7 +111,7 @@ background: {
     fontWeight: 'bold',
     color: 'white',
     padding: 4,
-    paddingBottom:6,
+    paddingBottom: 6,
     textAlign: 'center',
   },
   signUpButton: {
@@ -110,7 +132,7 @@ background: {
     color: '#FFFFFF',
     textDecorationLine: 'underline',
     marginTop: 20,
-    alignSelf:'center'
+    alignSelf: 'center'
   },
 });
 
