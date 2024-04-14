@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { saveData } from '../util/localStorageController';
 
 const ugpLogo = require('../assets/images/ugp_logo.png');
 const backgroundImage = require('../assets/images/background.png');
@@ -9,11 +10,19 @@ const whiteGolfBall = require('../assets/images/white_golf_ball.svg');
 const LoginPage = ({ navigation }: any) => {
   const signIn = async () => {
     try {
-      const hasGPlay = await GoogleSignin.hasPlayServices();
-      console.log(hasGPlay);
+      await GoogleSignin.hasPlayServices();
 
       const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo);
+      const user = userInfo.user;
+      const token = userInfo.idToken;
+      const userObj = {
+        "avatarUri": user.photo, "email": user.email,
+        "firstname": user.givenName, "lastname": user.familyName, "phone": null
+      }
+      await saveData('user', JSON.stringify(userObj));
+      await saveData('token', token);
+
+      navigation.navigate('Profile')
       // Handle the user information
     } catch (error) {
       console.log(error);
