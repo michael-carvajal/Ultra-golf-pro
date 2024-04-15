@@ -8,7 +8,12 @@ const backgroundImage = require('../assets/images/background.png');
 const whiteGolfBall = require('../assets/images/white_golf_ball.svg');
 
 const LoginPage = ({ navigation }: any) => {
-  const signIn = async () => {
+
+  const handleLoginForm = () => {
+    navigation.navigate('EmailLogin');
+  };
+
+  const handleGoogleSignUp = async () => {
     try {
       await GoogleSignin.hasPlayServices();
 
@@ -30,15 +35,7 @@ const LoginPage = ({ navigation }: any) => {
       console.error(error);
       // Handle error
     }
-  };
-  const handleLoginForm = () => {
-    navigation.navigate('EmailLogin');
-  };
 
-  const handleGoogleSignUp = async () => {
-    // Implement Google sign up logic here
-    // This function will navigate to HomeScreen after successful sign up
-    navigation.navigate('HomeScreen');
   };
 
   const handleSignUpForm = () => {
@@ -63,22 +60,18 @@ const LoginPage = ({ navigation }: any) => {
         <TouchableOpacity style={[styles.button, styles.appleButton]}>
           <Text style={styles.buttonText}>Sign Up with Apple</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        <GoogleSigninButton
+          style={styles.googleButton}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
           onPress={handleGoogleSignUp}
-          style={[styles.button, styles.googleButton]}>
-          <Text style={styles.buttonText}>Sign Up with Google</Text>
-        </TouchableOpacity>
+        />
+
         <TouchableOpacity
           onPress={handleSignUpForm}
           style={[styles.button, styles.signUpButton]}>
           <Text style={styles.buttonText}>Sign Up with Email</Text>
         </TouchableOpacity>
-        <GoogleSigninButton
-          style={styles.button}
-          size={GoogleSigninButton.Size.Wide}
-          color={GoogleSigninButton.Color.Dark}
-          onPress={signIn}
-        />
         <Text style={styles.termsText}>Terms and Conditions</Text>
       </ImageBackground>
     </View>
@@ -123,16 +116,20 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
     textAlign: 'center',
   },
-  signUpButton: {
-    backgroundColor: '#00FF00',
+
+  appleButton: {
+    backgroundColor: '#000000',
     marginTop: 20,
   },
   googleButton: {
-    backgroundColor: 'lightblue',
     marginTop: 20,
+    width: 'auto',
+    height: 50,
+    marginHorizontal: '9%',
+    fontSize: 30
   },
-  appleButton: {
-    backgroundColor: '#000000',
+  signUpButton: {
+    backgroundColor: '#00FF00',
     marginTop: 20,
   },
   termsText: {
@@ -140,8 +137,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#FFFFFF',
     textDecorationLine: 'underline',
-    marginTop: 20,
-    alignSelf: 'center'
+    marginTop: 200,
+    alignSelf: 'center',
+
   },
 });
 
