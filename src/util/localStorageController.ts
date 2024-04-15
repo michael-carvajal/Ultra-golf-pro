@@ -27,3 +27,9 @@ export  const getData = async (key: string) => {
     }
   };
   
+
+  export const logout = async () => {
+    await AsyncStorage.clear()
+    console.log('removed user info from local storage');
+    
+  }
