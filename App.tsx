@@ -5,16 +5,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import EmailLogin from './src/Pages/EmailLogin';
 import ProfilePage from './src/Pages/ProfilePage';
 function App(): React.ReactNode {
-  const Stack = createNativeStackNavigator();
-  return (
-    <NavigationContainer>
-<Stack.Navigator>
-  <Stack.Screen name='Login' component={LoginPage}></Stack.Screen>
-  <Stack.Screen name='EmailLogin' component={EmailLogin}></Stack.Screen>
-  <Stack.Screen name='Profile' component={ProfilePage}></Stack.Screen>
-</Stack.Navigator>
-    </NavigationContainer>
-  )
+    const Stack = createNativeStackNavigator();
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name='Login' component={LoginPage}></Stack.Screen>
+                <Stack.Screen name='EmailLogin' component={EmailLogin}></Stack.Screen>
+                <Stack.Screen name='Profile' component={ProfilePage}></Stack.Screen>
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
 }
 
 export default App;

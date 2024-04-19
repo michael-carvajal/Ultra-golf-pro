@@ -1,16 +1,18 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground, Button, Dimensions} from 'react-native';
-import {screenHeight, screenWidth} from "../../utils/consants";
+import { View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground, Button, Dimensions } from 'react-native';
+import { screenHeight, screenWidth } from "../../utils/consants";
 import GoogleSignUpButton from "./Components/GoogleSignUpButton";
 import AppleSignUpButton from "./Components/AppleSignUpButton";
 
 const ugpLogo = require('../../assets/images/ugp_logo.png');
 const backgroundImage = require('../../assets/images/background.png');
 
-const LoginPage = ({navigation}: any) => {
+const LoginPage = ({ navigation }: any) => {
     const handleLoginForm = () => {
+        console.log('navigating');
+        
         //TODO: add actual sign in logic
-        navigation.navigate('LoginFormScreen');
+        navigation.navigate('EmailLogin');
     };
 
     const handleGoogleSignUp = async () => {
@@ -24,10 +26,15 @@ const LoginPage = ({navigation}: any) => {
 
     return (
         <>
-            <ImageBackground source={backgroundImage} style={styles.backgroundImage}/>
+            <ImageBackground source={backgroundImage} style={styles.backgroundImage} />
             <View style={styles.container}>
-                <GoogleSignUpButton/>
-                <AppleSignUpButton/>
+                <TouchableOpacity onPress={handleLoginForm} style={styles.button}>
+                    <Text style={styles.buttonText}>Returning</Text>
+                    <Text style={styles.buttonText}>Members</Text>
+                    <Text style={styles.buttonText}>Start</Text>
+                </TouchableOpacity>
+                <GoogleSignUpButton />
+                <AppleSignUpButton />
 
                 <Text style={styles.loginText}>Already have an Account?{' '}
                     <TouchableOpacity>
@@ -63,6 +70,19 @@ const styles = StyleSheet.create({
         height: screenHeight,
         width: screenWidth,
         opacity: 0.7
+    },
+    button: {
+        alignItems: 'center',
+        marginHorizontal: '10%'
+
+    },
+    buttonText: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: 'white',
+        padding: 4,
+        paddingBottom: 6,
+        textAlign: 'center',
     },
     signUpButton: {
         backgroundColor: "#000000",
