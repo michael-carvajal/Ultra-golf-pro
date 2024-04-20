@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet} from 'react-native';
+import SignUpPage from "./app/authentication/SignUpPage";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {NavigationContainer} from "@react-navigation/native";
+import TermsAndConditionsPage from "./app/legal/TermsAndConditionsPage";
+import PrivacyPolicyPage from "./app/legal/PrivacyPolicyPage";
+import LoginPage from "./app/authentication/LoginPage";
 
+const Stack = createNativeStackNavigator();
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="SignUp"
+                              component={SignUpPage}
+                              options={{headerShown: false}}
+                />
+                <Stack.Screen name="Login"
+                              component={LoginPage}
+                              options={{headerShown: false}}
+                />
+                <Stack.Screen name="TermsAndConditions"
+                              component={TermsAndConditionsPage}
+                              options={{headerShown: true}}
+                />
+                <Stack.Screen name="PrivacyPolicy"
+                              component={PrivacyPolicyPage}
+                              options={{headerShown: true}}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
