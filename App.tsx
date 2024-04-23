@@ -5,6 +5,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import TermsAndConditionsPage from "./app/legal/TermsAndConditionsPage";
 import PrivacyPolicyPage from "./app/legal/PrivacyPolicyPage";
 import LoginPage from "./app/authentication/LoginPage";
+import ProfilePage from './app/profile/Profile';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -18,6 +19,10 @@ export default function App() {
                 />
                 <Stack.Screen name="Login"
                               component={LoginPage}
+                              options={{headerShown: false}}
+                />
+                <Stack.Screen name="Profile"
+                              component={ProfilePage}
                               options={{headerShown: false}}
                 />
                 <Stack.Screen name="TermsAndConditions"

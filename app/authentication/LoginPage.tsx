@@ -13,6 +13,7 @@ import {
 import GoogleSignUpButton from "./components/GoogleSignUpButton";
 import AppleSignUpButton from "./components/AppleSignUpButton";
 import {screenHeight, screenWidth} from "../utils/constants";
+import { saveData, getData } from '../utils/localStorageController';
 
 
 const ugpLogo = require('../assets/images/ugp_logo.png');
@@ -21,10 +22,43 @@ export default function LoginPage({navigation}: any) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLoginForm = () => {
-        //TODO: add actual sign in logic
-        // navigation.navigate('LoginFormScreen');
-    };
+    const handleLogin = async () => {
+        console.log('handle login')
+        console.log(email, password);
+    
+        const response = await fetch('http://dev.ultragolfpro.com/account/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        })
+        const data = await response.json();
+    
+        console.log(data);
+    
+        if (data.token) {
+          await saveData('token', data.token);
+    
+          const token = await getData('token');
+          const response = await fetch('http://dev.ultragolfpro.com/account/me', {
+            headers: {
+              'Authorization': token!
+            }
+          })
+          const userData = await response.json();
+          await saveData('user', JSON.stringify(userData));
+    
+          const localUser = await getData('user')
+          console.log('user datya from local stoarege =====>', localUser);
+          navigation.navigate('Profile')
+    
+        } else {
+          console.log('error there is no token');
+    
+        }
+    
+    
+      }
+    
 
     const handleNavToSignUp = () => {
         navigation.navigate('SignUp');
@@ -51,7 +85,7 @@ export default function LoginPage({navigation}: any) {
                         value={password}
                         secureTextEntry={true}
                     />
-                    <TouchableOpacity onPress={handleLoginForm} style={styles.loginButton}>
+                    <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
                         <Text style={styles.loginText}>Login</Text>
                     </TouchableOpacity>
                     <Text style={styles.loginText}>Need an Account?{' '}
