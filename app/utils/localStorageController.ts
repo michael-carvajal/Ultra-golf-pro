@@ -27,3 +27,13 @@ export  const getData = async (key: string) => {
     }
   };
   
+
+  export const logoutUser = async () => {
+    try {
+      await AsyncStorage.clear();
+
+    } catch (error) {
+      console.error('Error clearing out user data: ', error);
+      return null;
+    }
+  }

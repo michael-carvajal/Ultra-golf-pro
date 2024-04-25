@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
 import { screenHeight, screenWidth } from '../utils/constants';
 const backgroundImage = require('../assets/images/background.png');
-import { getData } from "../utils/localStorageController";
-import DefaultAvatar from "./components/defaultAvatar";
+import { getData, logoutUser } from "../utils/localStorageController";
+import DefaultAvatar from "./components/DefaultAvatar";
+import LogoutButton from "./components/LogoutButton";
 
 interface User {
   avatarUri: string | null;
@@ -26,6 +27,14 @@ const ProfilePage = ({ navigation }: any) => {
     };
     getUser();
   }, []);
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      navigation.navigate('SignUp');
+    } catch (error) {
+
+    }
+  }
 
   if (!user) {
     return (
@@ -34,7 +43,6 @@ const ProfilePage = ({ navigation }: any) => {
       </View>
     );
   }
-console.log(user.avatarUri);
 
   return (
     <ImageBackground style={styles.backgroundImage} source={backgroundImage}>
@@ -51,6 +59,7 @@ console.log(user.avatarUri);
           <Text style={styles.userEmail}>{user.email}</Text>
           {/* Display other user data as needed */}
         </View>
+        <LogoutButton handleLogout={handleLogout} />
       </View>
     </ImageBackground>
   );
@@ -60,7 +69,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
   loadingContainer: {
@@ -74,6 +83,8 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     alignItems: 'center',
+    gap: 48,
+    marginTop: '20%'
   },
   avatarContainer: {
     marginBottom: 20,
