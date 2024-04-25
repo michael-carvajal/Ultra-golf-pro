@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
 import { screenHeight, screenWidth } from '../utils/constants';
 const backgroundImage = require('../assets/images/background.png');
+const eclipse = require('../assets/images/eclipse.png')
 import { getData, logoutUser } from "../utils/localStorageController";
 import DefaultAvatar from "./components/DefaultAvatar";
 import LogoutButton from "./components/LogoutButton";
@@ -54,7 +55,9 @@ const ProfilePage = ({ navigation }: any) => {
         <Text style={styles.header} >Profile Page</Text>
         <View style={styles.userCredentials}>
           <View style={styles.credentialsLeft}>
+            <Image source={eclipse}>
 
+            </Image>
           </View>
           <View style={styles.credentialsRight}>
             <Text style={styles.displayData}>Name</Text>
@@ -88,7 +91,9 @@ const styles = StyleSheet.create({
   },
   userCredentials: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 32
   },
 
   credentialsLeft: {
@@ -100,7 +105,11 @@ const styles = StyleSheet.create({
     flex: 2
   },
   displayData: {
-    backgroundColor: "white"
+    backgroundColor: "white",
+    padding: 6,
+    borderRadius: 4,
+    borderColor: 'black',
+    borderWidth: 1
   },
   previewStats: {
     display: 'flex'
