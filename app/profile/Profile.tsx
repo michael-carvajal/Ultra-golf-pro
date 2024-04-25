@@ -5,6 +5,8 @@ const backgroundImage = require('../assets/images/background.png');
 import { getData, logoutUser } from "../utils/localStorageController";
 import DefaultAvatar from "./components/DefaultAvatar";
 import LogoutButton from "./components/LogoutButton";
+import { CommonActions } from '@react-navigation/native';
+
 
 interface User {
   avatarUri: string | null;
@@ -27,14 +29,16 @@ const ProfilePage = ({ navigation }: any) => {
     };
     getUser();
   }, []);
-  const handleLogout = async () => {
-    try {
-      await logoutUser();
-      navigation.navigate('SignUp');
-    } catch (error) {
 
-    }
+  const handleLogout = async () => {
+      try {
+          await logoutUser();
+          navigation.navigate('SignUp')
+      } catch (error) {
+          console.log(error);
+      }
   }
+  
 
   if (!user) {
     return (
