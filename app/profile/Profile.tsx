@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
+import { screenHeight, screenWidth } from '../utils/constants';
+const backgroundImage = require('../assets/images/background.png');
 import { getData } from "../utils/localStorageController";
+import DefaultAvatar from "./components/defaultAvatar";
 
 interface User {
   avatarUri: string | null;
@@ -26,19 +29,76 @@ const ProfilePage = ({ navigation }: any) => {
 
   if (!user) {
     return (
-      <View>
-        <Text>Loading...</Text>
+      <View style={styles.loadingContainer}>
+        <Text style={styles.loadingText}>Loading...</Text>
       </View>
     );
   }
+console.log(user.avatarUri);
 
   return (
-    <View>
-      <Text>{user.firstname} {" "} {user.lastname}</Text>
-      <Text>{user.email}</Text>
-      {/* Display other user data as needed */}
-    </View>
+    <ImageBackground style={styles.backgroundImage} source={backgroundImage}>
+      <View style={styles.profileContainer}>
+        {/* Profile Image */}
+        {user.avatarUri !== null ?
+          (<View style={styles.avatarContainer}>
+            {user.avatarUri && <Image source={{ uri: user.avatarUri }} style={styles.avatar} />}
+          </View>)
+          : <DefaultAvatar />}
+        {/* User Info */}
+        <View style={styles.userInfoContainer}>
+          <Text style={styles.userName}>{user.firstname} {user.lastname}</Text>
+          <Text style={styles.userEmail}>{user.email}</Text>
+          {/* Display other user data as needed */}
+        </View>
+      </View>
+    </ImageBackground>
   );
 };
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  profileContainer: {
+    alignItems: 'center',
+  },
+  avatarContainer: {
+    marginBottom: 20,
+    borderRadius: 75,
+    overflow: 'hidden',
+    borderWidth: 3,
+    borderColor: '#fff',
+  },
+  avatar: {
+    width: 150,
+    height: 150,
+  },
+  userInfoContainer: {
+    alignItems: 'center',
+  },
+  userName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 5,
+  },
+  userEmail: {
+    fontSize: 18,
+    color: '#fff',
+  },
+});
 
 export default ProfilePage;
