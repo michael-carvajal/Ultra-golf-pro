@@ -3,6 +3,8 @@ import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
 import { screenHeight, screenWidth } from '../utils/constants';
 const backgroundImage = require('../assets/images/background.png');
 const eclipse = require('../assets/images/eclipse.png')
+const horizontal_rectangle = require('../assets/images/horizontal_rectanlge.png')
+const verticle_rectangle = require('../assets/images/verticle_rectangle.png')
 import { getData, logoutUser } from "../utils/localStorageController";
 import DefaultAvatar from "./components/DefaultAvatar";
 import LogoutButton from "./components/LogoutButton";
@@ -55,9 +57,11 @@ const ProfilePage = ({ navigation }: any) => {
         <Text style={styles.header} >Profile Page</Text>
         <View style={styles.userCredentials}>
           <View style={styles.credentialsLeft}>
-            <Image source={eclipse}>
-
+            <Image source={eclipse} >
             </Image>
+            <Image source={horizontal_rectangle} style={{ position: 'absolute', top: '35%', left: '23%' }} />
+            <Image source={verticle_rectangle} style={{ position: 'absolute', top: '18%', left: '45%' }} />
+            <Text style= {{color: 'white', fontSize: 18, alignSelf: 'center'}}>Add Image</Text>
           </View>
           <View style={styles.credentialsRight}>
             <Text style={styles.displayData}>Name</Text>
@@ -97,7 +101,8 @@ const styles = StyleSheet.create({
   },
 
   credentialsLeft: {
-    flex: 1
+    flex: 1,
+    position: 'relative',
   },
   credentialsRight: {
     display: 'flex',
