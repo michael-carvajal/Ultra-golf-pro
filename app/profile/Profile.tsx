@@ -10,6 +10,7 @@ import DefaultAvatar from "./components/DefaultAvatar";
 import LogoutButton from "./components/LogoutButton";
 import { CommonActions } from '@react-navigation/native';
 import PreviewStats from "./components/PreviewStats";
+import PreviousRounds from "./components/PreviousRounds";
 
 
 interface User {
@@ -71,6 +72,7 @@ const ProfilePage = ({ navigation }: any) => {
           </View>
         </View>
         <PreviewStats/>
+        <PreviousRounds />
       </View>
     </ImageBackground>
   );
