@@ -9,6 +9,7 @@ import { getData, logoutUser } from "../utils/localStorageController";
 import DefaultAvatar from "./components/DefaultAvatar";
 import LogoutButton from "./components/LogoutButton";
 import { CommonActions } from '@react-navigation/native';
+import PreviewStats from "./components/PreviewStats";
 
 
 interface User {
@@ -69,6 +70,7 @@ const ProfilePage = ({ navigation }: any) => {
             <Text style={styles.displayData}>Mem Since</Text>
           </View>
         </View>
+        <PreviewStats/>
       </View>
     </ImageBackground>
   );
