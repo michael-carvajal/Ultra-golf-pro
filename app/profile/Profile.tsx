@@ -11,6 +11,7 @@ import LogoutButton from "./components/LogoutButton";
 import { CommonActions } from '@react-navigation/native';
 import PreviewStats from "./components/PreviewStats";
 import PreviousRounds from "./components/PreviousRounds";
+import PreviousTournaments from "./components/PreviousTournaments";
 
 
 interface User {
@@ -63,7 +64,7 @@ const ProfilePage = ({ navigation }: any) => {
             </Image>
             <Image source={horizontal_rectangle} style={{ position: 'absolute', top: '35%', left: '23%' }} />
             <Image source={verticle_rectangle} style={{ position: 'absolute', top: '18%', left: '45%' }} />
-            <Text style= {{color: 'white', fontSize: 18, alignSelf: 'center'}}>Add Image</Text>
+            <Text style={{ color: 'white', fontSize: 18, alignSelf: 'center' }}>Add Image</Text>
           </View>
           <View style={styles.credentialsRight}>
             <Text style={styles.displayData}>Name</Text>
@@ -71,8 +72,9 @@ const ProfilePage = ({ navigation }: any) => {
             <Text style={styles.displayData}>Mem Since</Text>
           </View>
         </View>
-        <PreviewStats/>
+        <PreviewStats />
         <PreviousRounds />
+        <PreviousTournaments />
       </View>
     </ImageBackground>
   );
