@@ -14,6 +14,26 @@ export default function PreviewStats() {
                     <Text style={styles.displayData}>95.6</Text>
                 </View>
             </View>
+            <View style={styles.row}>
+                <View style={styles.rowItem}>
+                    <Text style={styles.labels}>Course Played</Text>
+                    <Text style={styles.displayData}>65</Text>
+                </View>
+                <View style={styles.rowItem}>
+                    <Text style={styles.labels}>Fairway %</Text>
+                    <Text style={styles.displayData}>43.7</Text>
+                </View>
+            </View>
+            <View style={styles.row}>
+                <View style={styles.rowItem}>
+                    <Text style={styles.labels}>GIR %</Text>
+                    <Text style={styles.displayData}>48.2</Text>
+                </View>
+                <View style={styles.rowItem}>
+                    <Text style={styles.labels}>Best Round</Text>
+                    <Text style={styles.displayData}>79</Text>
+                </View>
+            </View>
         </View>
     )
 }
@@ -26,7 +46,8 @@ const styles = StyleSheet.create({
     row: {
         display: 'flex',
         flexDirection: 'row',
-        gap: 14
+        gap: 14,
+        marginBottom: 24
     },
     rowItem: {
         width:'48%'
