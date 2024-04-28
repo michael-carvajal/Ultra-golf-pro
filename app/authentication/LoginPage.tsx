@@ -49,8 +49,7 @@ export default function LoginPage({navigation}: any) {
     
           const localUser = await getData('user')
           console.log('user datya from local stoarege =====>', localUser);
-          navigation.navigate('Profile')
-    
+          navigation.navigate('Home', { screen: 'Profile' });
         } else {
           console.log('error there is no token');
     
