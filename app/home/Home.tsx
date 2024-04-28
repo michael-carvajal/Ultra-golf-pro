@@ -2,6 +2,10 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfilePage from '../profile/Profile';
+import Coach from '../coach/Coach';
+import Play from '../play/Play';
+import Tournament from '../tournament/Tournament';
+import Social from '../social/Social';
 
 const Tab = createBottomTabNavigator();
 const Home = ({ navigation } :any) => {
@@ -14,7 +18,10 @@ const Home = ({ navigation } :any) => {
     <View style={styles.container}>
     <Tab.Navigator>
       <Tab.Screen name="Profile" component={ProfilePage} />
-      {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
+      <Tab.Screen name="Play" component={Play} />
+      <Tab.Screen name="Tournament" component={Tournament} />
+      <Tab.Screen name="Coach" component={Coach} />
+      <Tab.Screen name="Social" component={Social} />
     </Tab.Navigator>
     </View>
   );
